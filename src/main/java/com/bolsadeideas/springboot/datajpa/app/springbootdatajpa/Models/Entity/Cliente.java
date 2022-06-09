@@ -24,13 +24,19 @@ public class Cliente implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
 
     @NotEmpty
+    @Column(name="nombre")
     private String nombre;
+    
     @NotEmpty
+    @Column(name="apellido")
     private String apellido;
+    
     @NotEmpty @Email
+    @Column(name="email")
     private String email;
 
     @Column(name = "create_at")

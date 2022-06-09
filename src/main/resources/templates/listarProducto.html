@@ -13,20 +13,20 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">Proyecto spring</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{/listar}">Cliente</a>
+                <a class="nav-link" th:href="@{/cliente/listar}">Cliente</a>
               </li>
               <li></li>
-                <a class="nav-link" th:href="@{/listarProducto}">Producto</a>
+                <a class="nav-link" th:href="@{/producto/listar}">Producto</a>
               </li>
               
             </ul>
@@ -41,13 +41,14 @@
     <div class="container"> 
         <h1 class="text-primary border border-primari border-top-0"  th:text="${tituloProducto}"></h1>
         
-        <p><a th:href="@{/formProducto}" class="btn btn-success btn-xs">Crear Producto</a></p>
+        <p><a th:href="@{/producto/form}" class="btn btn-success btn-xs">Crear Producto</a></p>
         <table class="table table-striper">
             <thead>
                 <th>ID</th>
                 <th>Nombre Producto</th>
                 <th>Cantidad Producto</th>
-                <th>Precio Producto</th>
+                <th>Precio Producto Venta</th>
+                <th>Precio Producto Compra</th>
                 <th>Fecha Creacion Producto</th>
                 <th>Editar Producto</th>
                 <th>Eliminar Producto</th>
@@ -60,9 +61,10 @@
                     <td th:text="${productos.nombreProducto}"></td>
                     <td th:text="${productos.cantidadProducto}"></td>
                     <td th:text="${productos.precioProducto}"></td>
+                    <td th:text="${productos.precioProductoCompra}"></td>
                     <td th:text="${productos.createProducto}"></td>
-                    <td><a th:href="@{/formProducto/} + ${productos.id}" class="btn btn-primary btn-xs">Editar</a></td>
-                    <td><a th:href="@{/eliminarProducto/} + ${productos.id}" class="btn btn-danger btn-xs" onclick= "return confirm('Esta seguro que desea eliminar el registro?')">Eliminar</a></td>
+                    <td><a th:href="@{/producto/form/} + ${productos.id}" class="btn btn-primary btn-xs">Editar</a></td>
+                    <td><a th:href="@{/producto/eliminar/} + ${productos.id}" class="btn btn-danger btn-xs" onclick= "return confirm('Esta seguro que desea eliminar el registro?')">Eliminar</a></td>
 
                 </tr>
             </tbody>

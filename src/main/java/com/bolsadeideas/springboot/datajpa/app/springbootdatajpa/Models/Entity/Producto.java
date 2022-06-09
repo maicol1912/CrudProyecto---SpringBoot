@@ -24,17 +24,26 @@ public class Producto implements Serializable{
   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
 
     @NotEmpty
+    @Column(name="nombre_producto")
     private String nombreProducto;
 
     
     @NotNull
+    @Column(name="cantidad_producto")
     private int cantidadProducto;
 
     @NotNull
+    @Column(name="precio_producto")
     private int precioProducto;
+    
+    @NotNull
+    @Column(name="precio_producto_compra")
+    private int precioProductoCompra;
+
 
     @Column(name = "create_producto")
     @Temporal(TemporalType.DATE)
@@ -81,5 +90,15 @@ public class Producto implements Serializable{
     public void setPrecioProducto(int precioProducto) {
         this.precioProducto = precioProducto;
     }
+
+	public int getPrecioProductoCompra() {
+		return precioProductoCompra;
+	}
+
+	public void setPrecioProductoCompra(int precioProductoCompra) {
+		this.precioProductoCompra = precioProductoCompra;
+	}
+    
+   
 
 }

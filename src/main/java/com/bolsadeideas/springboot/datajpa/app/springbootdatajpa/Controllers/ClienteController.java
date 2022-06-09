@@ -15,9 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+@RequestMapping("/cliente")
 public class ClienteController {
     
     @Autowired
@@ -25,7 +27,7 @@ public class ClienteController {
     //private IClienteDao clienteDao;
     private IClienteService clienteService;
 
-
+    
     @GetMapping("/listar")
     public String listar(Model model){
         
@@ -55,7 +57,7 @@ public class ClienteController {
 
         clienteService.save(cliente);
 
-        return "redirect:listar";
+        return "redirect:/cliente/listar";
     }
  
 
@@ -66,7 +68,7 @@ public class ClienteController {
             cliente = clienteService.findOne(id);
         }
         else{
-            return "redirect:listar";
+            return "redirect:/cliente/listar";
         }
         model.put("cliente",cliente);
         model.put("titulo", "Editar cliente");
@@ -79,7 +81,7 @@ public class ClienteController {
         if (id > 0)
             clienteService.delete(id);
         
-        return "redirect:/listar";
+        return "redirect:/cliente/listar";
     }
 
 

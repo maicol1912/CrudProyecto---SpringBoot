@@ -6,14 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
     
-    @GetMapping("/index")
-    public String mostrarIndex(){
-          return "index";
-    }
-
+ 
     @GetMapping("/")
     public String mostrarNada(){
-        return "indexBlanco";
+        return "index";
     }
 
     

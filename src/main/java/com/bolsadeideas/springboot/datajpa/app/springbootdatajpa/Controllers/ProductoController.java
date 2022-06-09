@@ -14,14 +14,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/producto")
 public class ProductoController {
 
     @Autowired
     private IProductoService productoService;
 
-    @GetMapping("/listarProducto")
+    @GetMapping("/listar")
     public String listarProducto(Model model){
         model.addAttribute("tituloProducto","Listado de Productos");
         model.addAttribute("productos",productoService.findAll());
@@ -29,7 +31,7 @@ public class ProductoController {
         return "listarProducto";
     }
 
-    @GetMapping("/formProducto")
+    @GetMapping("/form")
     public String crearProducto(Map<String,Object>model){
 
         Producto producto = new Producto();
@@ -39,7 +41,7 @@ public class ProductoController {
         return "formProducto";
     }
 
-    @PostMapping("/formProducto")
+    @PostMapping("/form")
     public String guardarProducto(@Valid Producto producto, BindingResult result, Model model){
         
         if(result.hasErrors()){
@@ -47,18 +49,18 @@ public class ProductoController {
             return "formProducto";
         }
         productoService.save(producto);
-        return "redirect:listarProducto";
+        return "redirect:/producto/listar";
     }
 
 
-    @GetMapping("/formProducto/{id}")
+    @GetMapping("/form/{id}")
     public String editar(@PathVariable Long id, Map<String,Object>model){
         Producto producto = null;
         if(id>0){
             producto = productoService.findOne(id);
         }
         else{
-            return "redirect:listarProducto";
+            return "redirect:/producto/listar";
         }
 
         model.put("producto", producto);
@@ -66,12 +68,12 @@ public class ProductoController {
         return "formProducto";
     }
 
-    @GetMapping("/eliminarProducto/{id}")
+    @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable Long id){
         if(id > 0)
            productoService.delete(id);
         
-        return "redirect:/listarProducto";
+        return "redirect:/producto/listar";
                
     }
 
