@@ -27,7 +27,7 @@ public class EncabezadoController {
 
     @GetMapping("/listar")
     public String listar(Model model){
-        model.addAttribute("titulo", "Listado de Encabezado");
+        model.addAttribute("tituloEncabezado", "Listado de Encabezado");
         model.addAttribute("encabezados", encabezadoService.findAll());
         return "listarEncabezado";
     }
@@ -35,14 +35,14 @@ public class EncabezadoController {
     public String crear(Map<String,Object>model){
         Encabezado encabezado = new Encabezado();
         model.put("encabezado",encabezado);
-        model.put("titulo", "Formulario Encabezado");
+        model.put("tituloEncabezado", "Formulario Encabezado");
         return "formEncabezado";
     }
     
     @PostMapping("/form")
     public String guardar(@Valid Encabezado encabezado, BindingResult result,Model model){
         if(result.hasErrors()){
-            model.addAttribute("titulo", "Formulario encabezados");
+            model.addAttribute("tituloEncabezado", "Formulario encabezados");
             return "formEncabezado";
         }
         encabezadoService.save(encabezado);
@@ -58,7 +58,7 @@ public class EncabezadoController {
             return "redirect:/encabezado/listar";
         }
         model.put("encabezado", encabezado);
-        model.put("titulo", "Editar Encabezado");
+        model.put("tituloEncabezado", "Editar Encabezado");
         return "formEncabezado";
     }
 

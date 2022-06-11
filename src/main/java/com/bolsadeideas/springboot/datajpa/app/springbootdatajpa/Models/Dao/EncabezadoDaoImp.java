@@ -35,7 +35,7 @@ public class EncabezadoDaoImp implements IEncabezadoDao{
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Encabezado findOne(Long id) {
         return em.find(Encabezado.class, id);
     }

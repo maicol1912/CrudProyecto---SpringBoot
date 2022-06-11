@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="detalle")
+@Table(name="detalles")
 public class Detalle implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -22,15 +22,14 @@ public class Detalle implements Serializable{
 	private Long id;
 	
 	
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    
 	@Column(name="id_producto")
 	private Long idProducto;
 
 
 	@NotNull
 	@Column(name="descuento_detalle")
-	private Double DescuentoDetalle;
+	private Double descuentoDetalle;
 
 	@NotNull
 	@Column(name="cantidad_detalle")
@@ -38,7 +37,7 @@ public class Detalle implements Serializable{
 
 	@NotNull
 	@Column(name="valor_detalle")
-    private Double valor;
+    private Double valorDetalle;
 
 	public Long getId() {
 		return id;
@@ -48,20 +47,21 @@ public class Detalle implements Serializable{
 		this.id = id;
 	}
 
-	public Long getIdProducto(Producto producto) {
-		return producto.getId();
+	
+	public Long getIdProducto() {
+		return idProducto;
 	}
 
-	public void setIdProducto(Long idProducto) {
-		this.idProducto = idProducto;
+	public void setIdProducto(Producto producto) {
+		this.idProducto = getId();
 	}
 
 	public Double getDescuentoDetalle() {
-		return DescuentoDetalle;
+		return descuentoDetalle;
 	}
 
 	public void setDescuentoDetalle(Double descuentoDetalle) {
-		DescuentoDetalle = descuentoDetalle;
+		this.descuentoDetalle = descuentoDetalle;
 	}
 
 	public int getCantidadDetalle() {
@@ -72,12 +72,12 @@ public class Detalle implements Serializable{
 		this.cantidadDetalle = cantidadDetalle;
 	}
 
-	public Double getValor() {
-		return valor;
+	public Double getValorDetalle() {
+		return valorDetalle;
 	}
 
-	public void setValor(Double valor) {
-		this.valor = valor;
+	public void setValorDetalle(Double valor) {
+		this.valorDetalle = valor;
 	}
 	
 	

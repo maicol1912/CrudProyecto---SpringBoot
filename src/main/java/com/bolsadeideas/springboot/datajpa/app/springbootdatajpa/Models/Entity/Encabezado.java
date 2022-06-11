@@ -9,13 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "encabezado")
+@Table(name = "encabezados")
 public class Encabezado implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -25,11 +27,11 @@ public class Encabezado implements Serializable {
     @Column(name="id")
     private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name="id_cliente")
     private Long idCliente;
 
+    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="fecha_creacion_pedido")
     private Date fechaCreacionPedido;
@@ -58,6 +60,7 @@ public class Encabezado implements Serializable {
     @Column(name="descuento_pedido")
     private Double descuentoPedido;
 
+    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="fecha_entrega_pedido")
     private Date fechaEntregaPedido;
@@ -74,12 +77,12 @@ public class Encabezado implements Serializable {
         this.id = id;
     }
 
-    public Long getIdCliente(Cliente cliente) {
-        return cliente.getId();
+    public Long getIdCliente() {
+        return idCliente;
     }
 
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
+    public void setIdCliente(Cliente cliente) {
+        this.idCliente = getId();
     }
 
     public Date getFechaCreacionPedido() {
@@ -146,16 +149,12 @@ public class Encabezado implements Serializable {
         this.fechaEntregaPedido = fechaEntregaPedido;
     }
 
-    public String getEstado() {
+    public String getEstadoPedido() {
         return estadoPedido;
     }
 
-    public void setEstado(String estado) {
+    public void setEstadoPedido(String estado) {
         this.estadoPedido = estado;
     }
 
-    
-    
-	
-	
 }

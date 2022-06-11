@@ -26,26 +26,43 @@ public class DetalleController {
 
     @GetMapping("/listar")
     public String listar(Model model){
-        model.addAttribute("titulo", "Listado Detalle Pedido");
+        model.addAttribute("tituloDetalle", "Listado Detalle Pedido");
         model.addAttribute("detalles",detalleService.findAll());
-        return "listarEncabezado";
+        return "listarDetalle";
     }
     @GetMapping("/form")
     public String crear(Map<String,Object>model){
         Detalle detalle = new Detalle();
         model.put("detalle",detalle);
-        model.put("titulo","Formulario Detalles");
+        model.put("tituloDetalle","Formulario de Detalles");
         return "formDetalle";
     }
     @PostMapping("/form")
     public String guardar(@Valid Detalle detalle, BindingResult result,Model model){
         if(result.hasErrors()){
-            model.addAttribute("titulo","Formulario de Clientes");
+            model.addAttribute("tituloDetalle","Formulario de Detalles");
             return "formDetalle";
         }
         detalleService.save(detalle);
         return"redirect:/detalle/listar";
     }
+  
+    @GetMapping("/form/{id}")
+    public String editar(@PathVariable Long id,Map<String,Object>model){
+        Detalle detalle = null;
+        if (id >0){
+            detalle = detalleService.findOne(id);
+        }
+        else{
+            return "redirect:/detalle/listar";
+        }
+        model.put("detalle",detalle);
+        model.put("tituloDetalle", "Editar Detalle");
+        return "formDetalle";
+    }
+ 
+
+
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable Long id){
         if (id>0){
