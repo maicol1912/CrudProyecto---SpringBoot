@@ -23,6 +23,9 @@
                 <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" th:href="@{/cliente/listar}">Cliente</a>
+              </li>
+              <li></li>
                 <a class="nav-link" th:href="@{/producto/listar}">Producto</a>
               </li>
               
@@ -37,56 +40,35 @@
 
     <div class="container"> 
         <h1 class="text-primary border border-primari border-top-0"  th:text="${tituloProducto}"></h1>
+        
+        <p><a th:href="@{/producto/form}" class="btn btn-success btn-xs">Crear Producto</a></p>
+        <table class="table table-striper">
+            <thead>
+                <th>ID</th>
+                <th>Nombre Producto</th>
+                <th>Cantidad Producto</th>
+                <th>Precio Producto Venta</th>
+                <th>Precio Producto Compra</th>
+                <th>Fecha Creacion Producto</th>
+                <th>Editar Producto</th>
+                <th>Eliminar Producto</th>
 
-        <form th:action="@{/producto/form}" th:object="${producto}" method="post">
+            </thead>
 
-          <div class="form-groupe"> 
-            <label class="col-sm-2 col-form-label">Nombre Producto</label>
-            <div class="col-sm-6">
-              <input class="form-control" type="text" th:field="*{nombreProducto}">
-            </div>
-            
-          </div>
+            <tbody>
+                <tr th:each="productos: ${productos}">
+                    <td th:text="${productos.id}"></td>
+                    <td th:text="${productos.nombreProducto}"></td>
+                    <td th:text="${productos.cantidadProducto}"></td>
+                    <td th:text="${productos.precioProducto}"></td>
+                    <td th:text="${productos.precioProductoCompra}"></td>
+                    <td th:text="${productos.createProducto}"></td>
+                    <td><a th:href="@{/producto/form/} + ${productos.id}" class="btn btn-primary btn-xs">Editar</a></td>
+                    <td><a th:href="@{/producto/eliminar/} + ${productos.id}" class="btn btn-danger btn-xs" onclick= "return confirm('Esta seguro que desea eliminar el registro?')">Eliminar</a></td>
 
-          <div class="form-groupe"> 
-            <label  class="col-sm-2 col-form-label">Cantidad Producto</label>
-            <div class="col-sm-6">
-              <input class="form-control" type="number" th:field="*{cantidadProducto}">
-            </div>
-            
-          </div>
-
-          <div class="form-groupe">
-            <label class="col-sm-2 col-form-label" >Precio Producto Venta</label>
-            <div class="col-sm-6">
-              <input class="form-control" type="number" th:field="*{precioProducto}">
-            </div>
-            
-          </div>
-
-          <div class="form-groupe">
-            <label class="col-sm-2 col-form-label" >Precio Producto Compra</label>
-            <div class="col-sm-6">
-              <input class="form-control" type="number" th:field="*{precioProductoCompra}">
-            </div>
-            
-          </div>
-
-          <div class="form-groupe">
-            <label class="col-sm-2 col-form-label" >Fecha Creacion</label>
-            <div class="col-sm-6">
-              <input class="form-control" type="text" th:field="*{createProducto}">
-            </div>
-            
-          </div>
-
-          <div class="form-groupe">
-            <div class="col-sm-6">
-              <input type="submit" value="Crear Producto" class="btn-btn-primary">
-            </div>
-          </div>
-          <input type="hidden" th:field="*{id}">
-      </form>
+                </tr>
+            </tbody>
+        </table>
     </div>
  <!--Scrip de estilos 1eros-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
