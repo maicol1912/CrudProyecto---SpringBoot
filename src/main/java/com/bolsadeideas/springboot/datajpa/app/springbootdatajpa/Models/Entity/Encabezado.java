@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "encabezados")
+@Table(name ="encabezados")
 public class Encabezado implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
