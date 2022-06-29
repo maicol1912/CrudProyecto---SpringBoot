@@ -81,7 +81,7 @@ public class Encabezado implements Serializable {
         return idCliente;
     }
 
-    public void setIdCliente(Cliente cliente) {
+    public void setIdCliente(Long id) {
         this.idCliente = getId();
     }
 
